@@ -1,20 +1,16 @@
 package com.msampietro.springspecquerylanguage.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.msampietro.springspecquerylanguage.misc.Constants.EQUAL;
 
-@NoArgsConstructor
 @Getter
-@Setter
 public class SearchCriteria {
-    private String key;
-    private SearchOperation operation;
+    private final String key;
+    private final SearchOperation operation;
     private Object value;
-    private boolean orPredicate;
+    private final boolean orPredicate;
 
     public SearchCriteria(final String orPredicate, final String key, final SearchOperation operation, final Object value) {
         this.key = key;
@@ -32,6 +28,10 @@ public class SearchCriteria {
     private SearchCriteria parseValue() {
         String[] parsedString = StringUtils.split(this.value.toString(), EQUAL);
         return new SearchCriteria(null, parsedString[0], null, parsedString[1]);
+    }
+
+    public boolean isValueSearchCriteria() {
+        return this.value instanceof SearchCriteria;
     }
 
 }

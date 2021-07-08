@@ -7,8 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Optional;
 
 import static com.msampietro.springspecquerylanguage.entity.SearchOperation.OR_PREDICATE_FLAG;
-import static com.msampietro.springspecquerylanguage.misc.Constants.ASTERISK;
-import static com.msampietro.springspecquerylanguage.misc.Constants.COMA;
+import static com.msampietro.springspecquerylanguage.misc.Constants.*;
 
 public final class SpecificationUtils {
 
@@ -37,13 +36,21 @@ public final class SpecificationUtils {
             boolean endWithAsterisk = StringUtils.contains(searchSection.getSuffix(), ASTERISK);
             if (startWithAsterisk && endWithAsterisk)
                 return SearchOperation.CONTAINS;
-            if(!startWithAsterisk && !endWithAsterisk)
+            if (!startWithAsterisk && !endWithAsterisk)
                 return SearchOperation.EQUALITY;
             if (startWithAsterisk)
                 return SearchOperation.ENDS_WITH;
             return SearchOperation.STARTS_WITH;
         }
         return parsedSearchOperation;
+    }
+
+    public static boolean isKeyCompound(String key) {
+        return StringUtils.contains(key, DOT);
+    }
+
+    public static String[] getCompoundKeys(String key) {
+        return StringUtils.split(key, DOT, 2);
     }
 
     private SpecificationUtils() {

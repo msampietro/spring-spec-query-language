@@ -8,9 +8,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
 
-public class GreaterThanPredicate<T> extends BasePredicate<T> {
+public class GreaterThanOrEqualPredicate<T> extends BasePredicate<T> {
 
-    GreaterThanPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    GreaterThanOrEqualPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 
