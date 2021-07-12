@@ -12,15 +12,15 @@ public class SearchSection {
     private final Object value;
     private final String prefix;
     private final String suffix;
-    private String andOrOperation;
+    private String andOrOperator;
 
-    public SearchSection(String key, String operation, Object value, String prefix, String suffix, String andOrOperation) {
+    public SearchSection(String key, String operation, Object value, String prefix, String suffix, String andOrOperator) {
         this.key = key;
         this.operation = operation;
         this.value = value;
         this.prefix = prefix;
         this.suffix = suffix;
-        this.andOrOperation = andOrOperation;
+        this.andOrOperator = andOrOperator;
     }
 
     public SearchSection(String key, String operation, Object value, String prefix, String suffix) {

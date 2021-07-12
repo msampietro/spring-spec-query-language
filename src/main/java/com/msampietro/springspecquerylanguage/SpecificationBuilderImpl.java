@@ -46,10 +46,10 @@ public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
         if (StringUtils.isBlank(search))
             return Optional.empty();
         var params = new ArrayList<SearchCriteria>();
-        var andOrOperation = SpecificationUtils.determineSplitOperation(search).orElse(null);
-        var searchQueries = SpecificationUtils.splitSearchOperations(search, andOrOperation);
+        var andOrOperator = SpecificationUtils.determineSplitOperation(search).orElse(null);
+        var searchQueries = SpecificationUtils.splitSearchOperations(search, andOrOperator);
         for (var parseCommand : PARSE_COMMANDS)
-            params.addAll(parseCommand.parse(searchQueries, andOrOperation));
+            params.addAll(parseCommand.parse(searchQueries, andOrOperator));
         return build(params);
     }
 

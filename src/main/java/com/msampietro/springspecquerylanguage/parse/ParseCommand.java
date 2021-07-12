@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ParseCommand {
 
-    List<SearchCriteria> parse(String[] search, String andOrOperation);
+    List<SearchCriteria> parse(String[] search, String andOrOperator);
 
 }
