@@ -5,12 +5,15 @@ import com.msampietro.springspecquerylanguage.entity.SearchCriteria;
 import com.msampietro.springspecquerylanguage.misc.SpecificationUtils;
 import com.msampietro.springspecquerylanguage.parse.*;
 import com.msampietro.springspecquerylanguage.predicatebuilder.SpecificationFactory;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
+@Log4j2
 public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
 
     private final ObjectMapper objectMapper;
@@ -22,9 +25,20 @@ public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
             new ReferencedCompoundParseCommand()
     ));
 
-    public SpecificationBuilderImpl(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    public SpecificationBuilderImpl(ObjectMapper objectMapper, Class<T> entityClazz) {
         this.objectMapper = objectMapper;
-        this.idClazz = idClazz;
+        this.idClazz = initializeIdClazz(entityClazz);
+    }
+
+    @SuppressWarnings("unchecked")
+    private Class<? extends Serializable> initializeIdClazz(Class<T> entityClazz) {
+        try {
+            return ((Class<? extends Serializable>) ((ParameterizedType) entityClazz
+                    .getGenericSuperclass()).getActualTypeArguments()[0]);
+        } catch (Exception e) {
+            log.warn("Could not determine entity generic id type, error: {}", e.getMessage());
+        }
+        return Serializable.class;
     }
 
     @Override
@@ -49,5 +63,9 @@ public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
                     ? Objects.requireNonNull(Specification.where(result)).or(specFactory.getSpecification(params.get(i)))
                     : Objects.requireNonNull(Specification.where(result)).and(specFactory.getSpecification(params.get(i)));
         return Optional.of(result);
+    }
+
+    protected Class<? extends Serializable> getIdClazz() {
+        return this.idClazz;
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -17,7 +18,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ExtendWith(MockitoExtension.class)
 class SpecificationBuilderImplTest {
 
-    private final SpecificationBuilderImpl<Object> specificationBuilder = new SpecificationBuilderImpl(new ObjectMapper(), Long.class);
+    private final SpecificationBuilderImpl<Object> specificationBuilder = new SpecificationBuilderImpl<>(new ObjectMapper(), Object.class);
+
+    @Test
+    void testSpecificationBuilderImplIdClassGenerics() {
+        SpecificationBuilderImpl<EntityGenericIdTestObject> specificationBuilder2 = new SpecificationBuilderImpl<>(new ObjectMapper(), EntityGenericIdTestObject.class);
+        assertThat(specificationBuilder2.getIdClazz()).isEqualTo(Long.class);
+        assertThat(specificationBuilder.getIdClazz()).isEqualTo(Serializable.class);
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "asdasdasda", " ", "name~textNameid_1"})
