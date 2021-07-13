@@ -31,7 +31,7 @@ class ContainsPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "name", SearchOperation.CONTAINS, "text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "name", SearchOperation.CONTAINS, "text");
         containsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
@@ -47,7 +47,7 @@ class ContainsPredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.CONTAINS, "name=text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.CONTAINS, "name=text");
         containsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
@@ -64,7 +64,7 @@ class ContainsPredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.CONTAINS, "text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.CONTAINS, "text");
         containsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
@@ -81,7 +81,7 @@ class ContainsPredicateTest {
 
     @Test
     void testToPredicateWhenNestedOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.CONTAINS, "name=text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.CONTAINS, "name=text");
         containsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);

@@ -34,7 +34,7 @@ class LessThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.LESS_THAN_OR_EQUAL, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.LESS_THAN_OR_EQUAL, "1");
         lessThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -50,7 +50,7 @@ class LessThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.LESS_THAN_OR_EQUAL, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.LESS_THAN_OR_EQUAL, "id=1");
         lessThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -67,7 +67,7 @@ class LessThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.LESS_THAN_OR_EQUAL, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.LESS_THAN_OR_EQUAL, "1");
         lessThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -84,7 +84,7 @@ class LessThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenNestedOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.LESS_THAN_OR_EQUAL, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.LESS_THAN_OR_EQUAL, "id=1");
         lessThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);

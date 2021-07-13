@@ -18,13 +18,13 @@ public abstract class BaseParseCommand implements ParseCommand {
     }
 
     @Override
-    public List<SearchCriteria> parse(String[] search, String andOrOperator) {
+    public List<SearchCriteria> parse(String[] search, boolean isOrPredicate) {
         var listOfResults = new ArrayList<SearchCriteria>();
         for (var s : search) {
             var matcher = pattern.matcher(s);
             if (matcher.matches()) {
                 var section = process(matcher);
-                section.setAndOrOperator(andOrOperator);
+                section.setOrPredicate(isOrPredicate);
                 listOfResults.add(buildCriteriaFromSection(section));
             }
         }
@@ -33,7 +33,7 @@ public abstract class BaseParseCommand implements ParseCommand {
 
     private SearchCriteria buildCriteriaFromSection(SearchSection searchSection) {
         var searchOperation = SpecificationUtils.resolveSearchOperation(searchSection);
-        return new SearchCriteria(searchSection.getAndOrOperator(),
+        return new SearchCriteria(searchSection.isOrPredicate(),
                 searchSection.getKey(),
                 searchOperation,
                 searchSection.getValue());

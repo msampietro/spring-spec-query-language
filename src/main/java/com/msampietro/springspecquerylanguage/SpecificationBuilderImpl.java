@@ -13,6 +13,8 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
+import static com.msampietro.springspecquerylanguage.entity.SearchOperation.OR_PREDICATE_FLAG;
+
 @Log4j2
 public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
 
@@ -46,10 +48,11 @@ public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
         if (StringUtils.isBlank(search))
             return Optional.empty();
         var params = new ArrayList<SearchCriteria>();
-        var andOrOperator = SpecificationUtils.determineSplitOperation(search).orElse(null);
-        var searchQueries = SpecificationUtils.splitSearchOperations(search, andOrOperator);
+        var splitOperation = SpecificationUtils.determineSplitOperation(search).orElse(null);
+        var isOrPredicate = StringUtils.equals(splitOperation, OR_PREDICATE_FLAG);
+        var searchQueries = SpecificationUtils.splitSearchOperations(search, splitOperation);
         for (var parseCommand : PARSE_COMMANDS)
-            params.addAll(parseCommand.parse(searchQueries, andOrOperator));
+            params.addAll(parseCommand.parse(searchQueries, isOrPredicate));
         return build(params);
     }
 

@@ -31,7 +31,7 @@ class CollectionContainsPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "collection", SearchOperation.COLLECTION_CONTAINS, 1);
+        SearchCriteria searchCriteria = new SearchCriteria(false, "collection", SearchOperation.COLLECTION_CONTAINS, 1);
         collectionContainsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -47,7 +47,7 @@ class CollectionContainsPredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.COLLECTION_CONTAINS, "collection=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.COLLECTION_CONTAINS, "collection=1");
         collectionContainsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -64,7 +64,7 @@ class CollectionContainsPredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.COLLECTION_CONTAINS, "collection=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.COLLECTION_CONTAINS, "collection=1");
         collectionContainsPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);

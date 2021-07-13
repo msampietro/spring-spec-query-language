@@ -35,7 +35,7 @@ class GreaterThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.GREATER_THAN_OR_EQUAL, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.GREATER_THAN_OR_EQUAL, "1");
         greaterThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -51,7 +51,7 @@ class GreaterThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.GREATER_THAN_OR_EQUAL, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.GREATER_THAN_OR_EQUAL, "id=1");
         greaterThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -68,7 +68,7 @@ class GreaterThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.GREATER_THAN_OR_EQUAL, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.GREATER_THAN_OR_EQUAL, "1");
         greaterThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -85,7 +85,7 @@ class GreaterThanOrEqualPredicateTest {
 
     @Test
     void testToPredicateWhenNestedOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.GREATER_THAN_OR_EQUAL, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.GREATER_THAN_OR_EQUAL, "id=1");
         greaterThanOrEqualPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);

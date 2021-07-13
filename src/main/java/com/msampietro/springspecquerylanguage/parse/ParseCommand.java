@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface ParseCommand {
 
-    List<SearchCriteria> parse(String[] search, String andOrOperator);
+    /**
+     * Parses and constructs a List of SearchCriteria objects.
+     * @param search  String[]
+     * @param isOrPredicate  boolean
+     * @return List<SearchCriteria>
+     */
+    List<SearchCriteria> parse(String[] search, boolean isOrPredicate);
 
 }

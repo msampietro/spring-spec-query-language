@@ -32,7 +32,7 @@ class NegationPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.NEGATION, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.NEGATION, "1");
         negationPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -48,7 +48,7 @@ class NegationPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValueNullableSearch() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.NEGATION, "null");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.NEGATION, "null");
         negationPredicate.setSearchCriteria(searchCriteria);
 
         when(root.get(searchCriteria.getKey())).thenReturn(joinPath);
@@ -61,7 +61,7 @@ class NegationPredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.NEGATION, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.NEGATION, "id=1");
         negationPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -78,7 +78,7 @@ class NegationPredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.NEGATION, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.NEGATION, "1");
         negationPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -95,7 +95,7 @@ class NegationPredicateTest {
 
     @Test
     void testToPredicateWhenNestedOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.NEGATION, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.NEGATION, "id=1");
         negationPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);

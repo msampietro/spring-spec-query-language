@@ -53,28 +53,28 @@ class SpecificationUtilsTest {
 
     @Test
     void testResolveSearchOperationReturnsContainsWhenColonAndStartEndAsterisks() {
-        SearchSection searchSection = new SearchSection("key", COLON, null, ASTERISK, ASTERISK, ",");
+        SearchSection searchSection = new SearchSection("key", COLON, null, ASTERISK, ASTERISK, false);
         SearchOperation result = SpecificationUtils.resolveSearchOperation(searchSection);
         assertThat(result).isEqualTo(CONTAINS);
     }
 
     @Test
     void testResolveSearchOperationReturnsEqualityWhenColonButNotStartNorEndAsterisks() {
-        SearchSection searchSection = new SearchSection("key", COLON, null, "", "", ",");
+        SearchSection searchSection = new SearchSection("key", COLON, null, "", "", false);
         SearchOperation result = SpecificationUtils.resolveSearchOperation(searchSection);
         assertThat(result).isEqualTo(EQUALITY);
     }
 
     @Test
     void testResolveSearchOperationReturnsEndsWithWhenColonAndStartAsterisk() {
-        SearchSection searchSection = new SearchSection("key", COLON, null, ASTERISK, "", ",");
+        SearchSection searchSection = new SearchSection("key", COLON, null, ASTERISK, "", false);
         SearchOperation result = SpecificationUtils.resolveSearchOperation(searchSection);
         assertThat(result).isEqualTo(ENDS_WITH);
     }
 
     @Test
     void testResolveSearchOperationReturnsEndsWithWhenColonAndEndAsterisk() {
-        SearchSection searchSection = new SearchSection("key", COLON, null, "", ASTERISK, ",");
+        SearchSection searchSection = new SearchSection("key", COLON, null, "", ASTERISK, false);
         SearchOperation result = SpecificationUtils.resolveSearchOperation(searchSection);
         assertThat(result).isEqualTo(STARTS_WITH);
     }

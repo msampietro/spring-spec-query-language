@@ -37,7 +37,7 @@ class EqualityPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.EQUALITY, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.EQUALITY, "1");
         equalityPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -54,7 +54,7 @@ class EqualityPredicateTest {
     @Test
     void testToPredicateWhenSingleSearchCriteriaValueSerializable() {
         Serializable id = Long.valueOf("1");
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.EQUALITY, id);
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.EQUALITY, id);
         equalityPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Long> longExpression = mock(Expression.class);
@@ -71,7 +71,7 @@ class EqualityPredicateTest {
     @Test
     void testToPredicateWhenValueParsingException() throws IOException {
         Serializable id = Long.valueOf("1");
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.EQUALITY, id);
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.EQUALITY, id);
 
         ObjectMapper mockedObjectMapper = mock(ObjectMapper.class);
         byte[] mockedByteArray = new byte[0];
@@ -91,7 +91,7 @@ class EqualityPredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValueNullableSearch() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "id", SearchOperation.EQUALITY, "null");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "id", SearchOperation.EQUALITY, "null");
         equalityPredicate.setSearchCriteria(searchCriteria);
 
         when(root.get(searchCriteria.getKey())).thenReturn(joinPath);
@@ -104,7 +104,7 @@ class EqualityPredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.EQUALITY, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.EQUALITY, "id=1");
         equalityPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -121,7 +121,7 @@ class EqualityPredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.EQUALITY, "1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.EQUALITY, "1");
         equalityPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);
@@ -138,7 +138,7 @@ class EqualityPredicateTest {
 
     @Test
     void testToPredicateWhenNestedOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.EQUALITY, "id=1");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.EQUALITY, "id=1");
         equalityPredicate.setSearchCriteria(searchCriteria);
 
         Expression<Integer> integerExpression = mock(Expression.class);

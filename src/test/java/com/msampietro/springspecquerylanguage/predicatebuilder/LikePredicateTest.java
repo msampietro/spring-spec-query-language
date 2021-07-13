@@ -32,7 +32,7 @@ class LikePredicateTest {
 
     @Test
     void testToPredicateWhenSingleSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "name", SearchOperation.LIKE, "text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "name", SearchOperation.LIKE, "text");
         likePredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
@@ -48,7 +48,7 @@ class LikePredicateTest {
 
     @Test
     void testToPredicateWhenNestedSearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "nested", SearchOperation.LIKE, "name=text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "nested", SearchOperation.LIKE, "name=text");
         likePredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
@@ -65,7 +65,7 @@ class LikePredicateTest {
 
     @Test
     void testToPredicateWhenOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.LIKE, "text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.LIKE, "text");
         likePredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
@@ -82,7 +82,7 @@ class LikePredicateTest {
 
     @Test
     void testToPredicateWhenNestedOneToManySearchCriteriaValue() {
-        SearchCriteria searchCriteria = new SearchCriteria(null, "list.nested", SearchOperation.LIKE, "name=text");
+        SearchCriteria searchCriteria = new SearchCriteria(false, "list.nested", SearchOperation.LIKE, "name=text");
         likePredicate.setSearchCriteria(searchCriteria);
 
         Expression<String> stringExpression = mock(Expression.class);
