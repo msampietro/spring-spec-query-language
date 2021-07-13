@@ -16,9 +16,8 @@ public class StartsWithPredicate<T> extends BasePredicate<T> {
         super(objectMapper, idClazz);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        return builder.like(builder.upper(getCriteriaStringExpressionKey(root).as(String.class)), StringUtils.join(getCriteriaObjectValue().toString().toUpperCase(), PERCENT_SIGN));
+        return builder.like(builder.upper(getCriteriaStringExpressionKey(root).as(String.class)), StringUtils.join(StringUtils.upperCase(getCriteriaObjectValue().toString()), PERCENT_SIGN));
     }
 }

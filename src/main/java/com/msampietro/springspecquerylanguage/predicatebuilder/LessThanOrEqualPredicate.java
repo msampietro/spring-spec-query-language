@@ -14,7 +14,6 @@ public class LessThanOrEqualPredicate<T> extends BasePredicate<T> {
         super(objectMapper, idClazz);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         return builder.lessThanOrEqualTo(getCriteriaExpressionKey(root), parseValue(getCriteriaObjectValue().toString(), builder));

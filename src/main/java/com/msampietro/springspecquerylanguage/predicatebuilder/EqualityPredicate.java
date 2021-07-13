@@ -15,7 +15,6 @@ public class EqualityPredicate<T> extends BasePredicate<T> {
         super(objectMapper, idClazz);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         var searchValue = getCriteriaObjectValue().toString();
