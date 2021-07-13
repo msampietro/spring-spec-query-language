@@ -7,5 +7,5 @@
 ### Post 
 https://sampietromartin.medium.com/spring-data-jpa-a-generic-specification-query-language-a599aea84856
 
-###Documentation
+### Documentation
 https://github.com/msampietro/spring-spec-query-language/wiki/Index
