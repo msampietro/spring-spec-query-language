@@ -51,8 +51,7 @@ public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
         var splitOperation = SpecificationUtils.determineSplitOperation(search).orElse(null);
         var isOrPredicate = StringUtils.equals(splitOperation, OR_PREDICATE_FLAG);
         var searchQueries = SpecificationUtils.splitSearchOperations(search, splitOperation);
-        for (var parseCommand : PARSE_COMMANDS)
-            params.addAll(parseCommand.parse(searchQueries, isOrPredicate));
+        PARSE_COMMANDS.forEach(p -> params.addAll(p.parse(searchQueries, isOrPredicate)));
         return build(params);
     }
 
