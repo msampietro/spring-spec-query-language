@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public class LessThanOrEqualPredicate<T> extends BasePredicate<T> {
 
-    LessThanOrEqualPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    public LessThanOrEqualPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 

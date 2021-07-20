@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public class CollectionContainsPredicate<T> extends BasePredicate<T> {
 
-    CollectionContainsPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    public CollectionContainsPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 

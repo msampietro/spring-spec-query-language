@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class LikePredicate<T> extends BasePredicate<T> {
 
-    LikePredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    public LikePredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 

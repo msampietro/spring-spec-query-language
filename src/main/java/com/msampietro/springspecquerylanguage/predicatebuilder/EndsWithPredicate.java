@@ -13,7 +13,7 @@ import static com.msampietro.springspecquerylanguage.misc.Constants.PERCENT_SIGN
 
 public class EndsWithPredicate<T> extends BasePredicate<T> {
 
-    EndsWithPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    public EndsWithPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 

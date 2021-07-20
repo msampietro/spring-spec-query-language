@@ -12,7 +12,8 @@ import java.io.Serializable;
 import static com.msampietro.springspecquerylanguage.misc.Constants.PERCENT_SIGN;
 
 public class StartsWithPredicate<T> extends BasePredicate<T> {
-    StartsWithPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+
+    public StartsWithPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 

@@ -13,7 +13,7 @@ import static com.msampietro.springspecquerylanguage.misc.Constants.PERCENT_SIGN
 
 public class ContainsPredicate<T> extends BasePredicate<T> {
 
-    ContainsPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
+    public ContainsPredicate(ObjectMapper objectMapper, Class<? extends Serializable> idClazz) {
         super(objectMapper, idClazz);
     }
 
