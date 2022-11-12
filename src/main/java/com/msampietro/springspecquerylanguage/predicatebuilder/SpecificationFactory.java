@@ -40,7 +40,7 @@ public class SpecificationFactory<T> {
             case COLLECTION_CONTAINS:
                 return new CollectionContainsPredicate<>(objectMapper, idClazz);
             default:
-                log.warn("Operation {} is not valid, ignoring this opration", searchOperation);
+                log.warn("Operation {} is not valid, ignoring this operation", searchOperation);
                 return new ConjunctionPredicate<>(objectMapper, idClazz);
         }
     }
