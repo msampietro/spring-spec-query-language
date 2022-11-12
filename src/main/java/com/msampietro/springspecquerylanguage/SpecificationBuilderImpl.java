@@ -58,12 +58,12 @@ public class SpecificationBuilderImpl<T> implements SpecificationBuilder<T> {
     private Optional<Specification<T>> build(List<SearchCriteria> params) {
         if (params.isEmpty())
             return Optional.empty();
-        var specFactory = new SpecificationFactory<T>(objectMapper, idClazz);
-        Specification<T> result = specFactory.getSpecification(params.get(0));
+        var specFactory = new SpecificationFactory<T>();
+        Specification<T> result = specFactory.getSpecification(params.get(0), objectMapper, idClazz);
         for (var i = 1; i < params.size(); i++)
             result = params.get(i).isOrPredicate()
-                    ? Objects.requireNonNull(Specification.where(result)).or(specFactory.getSpecification(params.get(i)))
-                    : Objects.requireNonNull(Specification.where(result)).and(specFactory.getSpecification(params.get(i)));
+                    ? Objects.requireNonNull(Specification.where(result)).or(specFactory.getSpecification(params.get(i), objectMapper, idClazz))
+                    : Objects.requireNonNull(Specification.where(result)).and(specFactory.getSpecification(params.get(i), objectMapper, idClazz));
         return Optional.of(result);
     }
 
